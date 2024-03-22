@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jovitha.devops.domain.Login;
 import com.jovitha.devops.service.LogService;
@@ -21,7 +22,6 @@ public class LogController {
     @GetMapping("/")
     public String api()
     {
- 
         return "index";
     }
  
@@ -37,6 +37,12 @@ public class LogController {
             return "redirect:/";
         }
     }
+
+    @RequestMapping("/reg")
+    public String register(){
+        return "register";
+    }
+
  
     @GetMapping("/disp")
     public String display() {
