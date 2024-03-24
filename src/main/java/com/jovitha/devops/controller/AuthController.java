@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jovitha.devops.domain.Login;
+import com.jovitha.devops.domain.Authentication;
 import com.jovitha.devops.service.AuthService;
 
 @Controller
@@ -19,10 +19,8 @@ public class AuthController {
   private AuthService service;
 
   @PostMapping("/log")
-  public String login(@ModelAttribute("user") Login user) {
-
-      Login oauthUser = service.log(user.getUsername(), user.getPassword());
-
+  public String login(@ModelAttribute("user") Authentication user) {
+      Authentication oauthUser = service.login(user.getUsername(), user.getPassword());
       System.out.print(oauthUser);
       if (Objects.nonNull(oauthUser)) {
           return "redirect:/disp";
@@ -32,7 +30,7 @@ public class AuthController {
   }
 
   @PostMapping("/register")
-  public String register(@ModelAttribute("user") Login user) {
+  public String register(@ModelAttribute("user") Authentication user) {
       service.saveUser(user.getUsername(), user.getPassword());
       return "redirect:/disp";
   }
